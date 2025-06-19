@@ -1,0 +1,73 @@
+class Person {
+  String _name = '';
+  int age;
+
+  // Constructor
+  Person(String name, this.age) {
+    this.name = name; // Using setter for validation
+  }
+
+  // Getter for name
+  String get name => _name;
+
+  // Setter with validation
+  set name(String value) {
+    if (value.isEmpty) {
+      throw ArgumentError("Name cannot be empty.");
+    }
+    _name = value;
+  }
+
+  // Display method
+  void display() {
+    print("Name: $_name, Age: $age");
+  }
+}
+
+class Student extends Person {
+  int rollNumber;
+  String course;
+
+  // Default constructor
+  Student(String name, int age, this.rollNumber, this.course) : super(name, age);
+
+  // Named constructor
+  Student.named({required String name, required int age, required this.rollNumber, required this.course})
+      : super(name, age);
+
+  // Override display
+  @override
+  void display() {
+    print("Name: $name, Age: $age, Roll No: $rollNumber, Course: $course");
+  }
+}
+
+// Function to filter and display students by course
+void filterByCourse(List<Student> students, String targetCourse) {
+  print("\nStudents enrolled in '$targetCourse':");
+  for (var student in students) {
+    if (student.course.toLowerCase() == targetCourse.toLowerCase()) {
+      student.display();
+    }
+  }
+}
+
+void main() {
+  // Creating student objects using both constructors
+  Student s1 = Student("Fahad", 20, 101, "Flutter");
+  Student s2 = Student.named(name: "Sara", age: 22, rollNumber: 102, course: "React Native");
+  Student s3 = Student("Omer", 21, 103, "Flutter");
+  Student s4 = Student.named(name: "Eisha", age: 23, rollNumber: 104, course: "Kotlin");
+
+  // Add to list
+  List<Student> studentList = [s1, s2, s3, s4];
+
+  // Print all students
+  print("All Students:");
+  for (var student in studentList) {
+    student.display();
+  }
+
+  // Filter students by course
+  filterByCourse(studentList, "Flutter");
+}
