@@ -1,0 +1,61 @@
+import 'dart:io';
+
+void main() {
+  // 1. Declare and initialize different types of variables
+  int rollNumber = 70159518;
+  String course = "Mobile App Development";
+  bool isEnrolled = true;
+
+  print("Course: $course");
+  print("Roll Number: $rollNumber");
+  print("Enrollment Status: $isEnrolled");
+
+  // 2. Accept user input for name and age
+  stdout.write("Enter your name: ");
+  String? name = stdin.readLineSync();
+
+  stdout.write("Enter your age: ");
+  int? age = int.tryParse(stdin.readLineSync() ?? '');
+
+  if (age == null) {
+    print("Invalid age entered.");
+    return;
+  }
+
+  print("Hello, $name! You are $age years old.");
+
+  // 3. List of cities and reverse order
+  List<String> cities = ["Lahore", "Karachi", "Islamabad", "Quetta", "Peshawar"];
+  print("\nOriginal list of cities:");
+  print(cities);
+
+  List<String> reversedCities = List.from(cities.reversed);
+  print("\nReversed list of cities:");
+  print(reversedCities);
+
+  // 4. Map of students with marks
+  Map<String, int> studentMarks = {
+    "Ali": 85,
+    "Sara": 92,
+    "Omer": 78,
+  };
+
+  // Add a new entry
+  studentMarks["Fatima"] = 88;
+
+  print("\nUpdated Student Marks:");
+  studentMarks.forEach((key, value) {
+    print("$key: $value");
+  });
+
+  // 5. Conditional logic based on age
+  String category = (age < 13)
+      ? "Child"
+      : (age < 20)
+          ? "Teen"
+          : (age < 60)
+              ? "Adult"
+              : "Senior";
+
+  print("\n$name, you are classified as: $category");
+}
